@@ -1,0 +1,22 @@
+{
+  "name": "quiz-application",
+  "version": "1.0.0",
+  "description": "Quiz application",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha quiz.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vynessa/quiz-application.git"
+  },
+  "author": "Vanessa Ejikeme",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vynessa/quiz-application/issues"
+  },
+  "homepage": "https://github.com/Vynessa/quiz-application#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
