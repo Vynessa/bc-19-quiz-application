@@ -1,0 +1,72 @@
+extends layout.pug
+block content
+  h1 Quiz Application
+  #quizQuestions
+  div(id="questions-list" class="mdl-card mdl-shadow--2dp")
+    div(class="mdl-card__title")
+      h2(class="mdl-card__title-text") Question 1
+    div(class="mdl-card__supporting-text") Which Phone does not have an android operating system?
+      ul(class="demo-list-control mdl-list")
+        li(class="mdl-list__item")
+          span(class="mdl-list__item-primary-content")
+            span(class="mdl-list__item-secondary-action")
+              label(class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-1")
+                input(type="radio" id="list-option-1" class="mdl-radio__button" name="options" value="1" )
+            span Infinix
+        li(class="mdl-list__item")
+          span(class="mdl-list__item-primary-content")
+            span(class="mdl-list__item-secondary-action")
+              label(class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-2")
+                input(type="radio" id="list-option-2" class="mdl-radio__button" name="options" value="2" )
+            span Nexus
+        li(class="mdl-list__item")
+          span(class="mdl-list__item-primary-content")
+            span(class="mdl-list__item-secondary-action")
+              label(class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-3")
+                input(type="radio" id="list-option-3" class="mdl-radio__button" name="options" value="3")
+            span Iphone
+        li(class="mdl-list__item")
+          span(class="mdl-list__item-primary-content")
+            span(class="mdl-list__item-secondary-action")
+              label(class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-4")
+                input(type="radio" id="list-option-4" class="mdl-radio__button" name="options" value="4")
+            span Gionee
+  
+  button(class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect") Submit
+
+  script.
+    $(document).ready(function(){
+      firebase.database().ref('questions').once('value').then(function(questions) {
+        console.log(questions.val());
+        var questionsHtml = questions.val().map(function(question, index){
+          var optionsHtml = question.options.map(function(option, optionIndex) {
+            var optionId = index + '' + optionIndex;
+            return  "<li class='mdl-list__item'>" +
+                      "<span class='mdl-list__item-primary-content'>" +
+                        "<span class='mdl-list__item-secondary-action'>" +
+                          "<label class='demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect' for='list-option-" + optionId + "'>" +
+                          "<input type='radio' id='list-option-" + optionId + "' class='mdl-radio__button' name='options"+ optionId +"' value='"+ optionIndex +"' />" +
+                          "</label>" +
+                        "</span>" +
+                        "<span>"+ option +"</span>"
+                      "</span>" +
+                    "</li>";
+          });
+          var questionHtml = "<div class='mdl-card mdl-shadow--2dp'><div class='mdl-card__title'><h2> Question " + index + "</h2></div><div class='mdl-card__supporting-text'>" + question.question + "</div><ul class='demo-list-control mdl-list'>" + optionsHtml + "</ul></div>";
+          return questionHtml;
+        });
+        $("#quizQuestions").html(questionsHtml);
+      });
+    })
+   
+  style.
+    .demo-list-control {
+      width: 300px;
+    }
+
+    
+  
+ 
+    .demo-list-radio {
+      display: inline;
+    }
