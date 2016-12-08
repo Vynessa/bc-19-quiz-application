@@ -2,33 +2,27 @@ var express = require("express");
 var app = express();
 var path = require('path');
 var admin = require("firebase-admin");
+var firebase = require('firebase');
 
-admin.initializeApp({
-  credential: admin.credential.cert("quiz-application-firebaseKey.json"),
-  databaseURL: "https://quiz-application-199b2.firebaseio.com"
-});
+ var config = {
+  apiKey: "AIzaSyBrpB0CTavWdcN3NQcR07xM6UKz8WZtqWg",
+  authDomain: "quiz-application-199b2.firebaseapp.com",
+  databaseURL: "https://quiz-application-199b2.firebaseio.com",
+  storageBucket: "quiz-application-199b2.appspot.com",
+  messagingSenderId: "550910490749"
+};
 
-var appDb = admin.database();
+firebase.initializeApp(config);
 
 var port = 3030;
 
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs')
 //app.use(express.static('public'));
 
-//app.set("views", "./views");
-//app.set("view engine", "html")
-
-/* app.get('/', function(req, res){
-	res.send('Hello World');
-
-}); */
-
-// app.get('/', function(req, res){
-// 	res.sendFile(path.join(__dirname + '/public/index.html'));
-// });
-
 app.get('/', function(req, res){
-	res.render('index', { title: 'Index' });
+	firebase.database().ref('questions').once('value').then(function(questions){
+		res.render('index', { questions: questions.val() });
+	});
 });
 
 app.get('/leaderboard', function(req, res){

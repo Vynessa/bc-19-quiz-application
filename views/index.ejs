@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<title>Quiz Up</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+		<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		  <header class="mdl-layout__header">
+		    <div class="mdl-layout__header-row">
+		      <span class="mdl-layout-title">Quiz Application</span>
+		      <div class="mdl-layout-spacer"></div>
+		      <nav class="mdl-navigation mdl-layout--large-screen-only">
+		        <a class="mdl-navigation__link" href="">Link</a>
+		        <a class="mdl-navigation__link" href="">Link</a>
+		        <a class="mdl-navigation__link" href="">Link</a>
+		        <a class="mdl-navigation__link" href="">Link</a>
+		      </nav>
+		    </div>
+		  </header>
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+		    	<form id="myForm">
+			    	<% questions.forEach(function(question, index) { %>
+			    	<div class="mdl-card mdl-shadow--2dp">
+			    		<div class="mdl-card__title">
+			    			<h2>Question <%= index + 1 %></h2>
+			    		</div>
+			    		<div class="mdl-card__supporting-text"><%= question.question %></div>
+				    		<ul class="demo-list-control mdl-list">
+				    		<% question.options.forEach(function(option, idx) { %>
+				    			<li class="mdl-list__item">
+						    		<span class="mdl-list__item-primary-content">
+						    			<span class="mdl-list__item-secondary-action">
+						    				<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-<%= index %><%= idx %>">
+						    					<input type="radio" id="list-option-<%= index %><%= idx %>" class="mdl-radio__button" name="question<%= index %>" value="<%= option %>" />
+						    					<%= option %>
+						    				</label>
+						    			</span>
+						    		</span>
+						    	</li>
+						    	<% }); %>
+						    	<input type="hidden" id="answer<%= index %>" value="<%= question.answer %>">
+				    		</ul>
+			    		</div>
+			    		<% }); %>
+			    		<button id="submit" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Submit</button>
+		    		</form>
+		    </div>
+		  </main>
+		</div>
+		<script type="text/javascript">
+			$("document").ready(function(){
+				$("#submit").click(function(){
+					var questionLength = <%= questions.length %>;
+					var correctAnswers = 0;
+
+					for (var i = 0; i < questionLength; i++) {
+						var questionId = "question" + i;
+						var answerId = "answer" + i;
+						var answer = $("input[name=" + questionId + "]:checked", "#myForm").val();
+						if (answer === undefined)
+						{
+							alert("You must answer all questions");
+							return;
+						}
+						var correct = $("input#" + answerId, "#myForm").val();
+
+						if (answer === correct)
+						{
+							correctAnswers++;
+						}
+					}
+
+					alert("You answered " + correctAnswers + " correctly");
+
+				});
+			});
+		</script>
+	</body>
+</html>
