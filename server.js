@@ -14,7 +14,7 @@ var firebase = require("firebase");
 
 firebase.initializeApp(config);
 
-var port = 3030;
+var port = process.env.PORT || 3030;
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'));
