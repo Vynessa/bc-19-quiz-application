@@ -13,24 +13,24 @@
         <div class="mdl-layout__header-row">
           <span class="mdl-layout-title">Quiz Application</span>
           <div class="mdl-layout-spacer"></div>
-          <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a class="mdl-navigation__link" href="/generaltech">General Technology Questions</a>
-            <a class="mdl-navigation__link" href="/leaderboard">Leaderboard</a>
-          </nav>
         </div>
       </header>
     </div>
     <main class="mdl-layout__content">
       <div class="page-content">
-        <h2>How knowledgeable are you?</h2>
-        <h5>Find out by taking our fun quiz below</h5>
-      </div>
-      <div class="quiz-categories">
-        <ul>
-          <li>
-            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" href="/generaltech">General Technology</a>
-          </li>
-        </ul>
+        <h2>Leaderboard</h2>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <% users.forEach(function(user) {%>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.score %></td>
+          </tr>
+          <% }); %>
+        </table>
       </div>
     </main>
   </body>

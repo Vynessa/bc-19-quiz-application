@@ -1,34 +1,38 @@
 div.page-content h2{
-	margin-top: 90px;
-	margin-left: 350px;
+  margin-top: 90px;
+  margin-left: 350px;
 }
 
-div.page-content p{
-	margin-top: 20px;
-	margin-left: 440px;
-	font-weight: bold;
+div.page-content h5{
+  margin-top: 20px;
+  margin-left: 440px;
+  font-weight: bold;
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover{
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .quiz-categories{
-	margin-left: 410px;
-	margin-top: 30px;
+  margin-left: 480px;
+  margin-top: 30px;
 }
 
-/** #myForm .mdl-card mdl-shadow--2dp
+ul {
+  list-style: none;
+}
+
+/** #myForm .mdl-card.mdl-shadow--2dp
 
 /**.login-form{
-	background-color: #f3f4fb;
-	width: 400px;
-	height: 225px;
-	position: relative;
+  background-color: #f3f4fb;
+  width: 400px;
+  height: 225px;
+  position: relative;
 
 } **/
 

@@ -20,23 +20,45 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'));
 
 app.get('/', function(req, res){
-	res.render('index', { title: 'Quiz' });
+    res.render('index', { title: 'Quiz' });
 });
 
 app.get('/generaltech', function(req, res) {
-	firebase.database().ref('questions').once('value').then(function(questions){
-		res.render('generaltech', { questions: questions.val() });
-	});
+    firebase.database().ref('questions').once('value').then(function(questions){
+        res.render('generaltech', { questions: questions.val() });
+    });
 });
 
-// app.get('/leaderboard', function(req, res){
-// 	res.render('leaderboard', { title: 'Leaderboard' });
-// });
+app.get('/leaderboard', function(req, res){
+    firebase.database().ref('users').once('value').then(function(users){
+        var userObjs = [];
+        var _users = users.val();
+        for (var x in _users)
+        {
+            userObjs.push(_users[x]);
+        }
 
-// app.get('/quiz', function(req, res){
-// 	res.render('quiz', { title: 'Quiz' });
-// });
+        function compare(a,b) {
+          if (a.score < b.score)
+            return 1;
+          if (a.score > b.score)
+            return -1;
+          return 0;
+        }
+        res.render('leaderboard', { users: userObjs.sort(compare) });
+    });
+});
 
+app.get('/add/leaderboard/:username/:score', function(req, res){
+    var username = req.params.username;
+    var score = req.params.score;
+    var users = firebase.database().ref('users');
+    users.push({
+        'name': username,
+        'score': score
+    });
+    res.redirect('/leaderboard');
+});
 app.listen(port, function() {
-	console.log("Server running on port " + port);
+    console.log("Server running on port " + port);
 });
