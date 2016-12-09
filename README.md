@@ -47,5 +47,5 @@ Before beginning, ensure you have the required software to run this application.
 5. Enter the URL in your web browser
 >`http://localhost:3030/`
 
-This app can also be viewed on this link.
+This app can also be viewed on this [link](https://bc-19-quiz-application.herokuapp.com)
 
