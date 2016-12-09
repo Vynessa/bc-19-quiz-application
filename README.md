@@ -19,7 +19,7 @@ Quizup is a web Application where users take knowledge based tests, with each us
 - [Firebase](https://firebase.google.com/) - Google's non-relational database.
 
 ### Front End Dependencies
-- Material Design Lite - The User Interface have been styled using CSS framework.
+- Material Design Lite - The User Interface styling using this CSS framework.
 - JQuery - This is a lightweight Javascript library that enables easy manipulation of DOM elements.
 - Sweet Alert - This alert framework is used to pop-up alerts to display the user's score and take the user's input for Leaderboard ranking.
 
@@ -30,7 +30,7 @@ Before beginning, ensure you have the required software to run this application.
 - [Node.js](nodejs.org) - A version with ECMAScript 2009 (ES5) support.
 - [ExpressJS](https://expressjs.com/) - This app has been tested on version `6.9.1`
 
-## Local development.
+## Local development
 
 1. Navigate to a directory of your choice and clone this repository to it
 >`git clone https://github.com/Vynessa/bc-19-quiz-application.git
@@ -41,7 +41,11 @@ Before beginning, ensure you have the required software to run this application.
 3. Install the app's required dependencies by running
 >`npm install`
 
-4. After installation, start up the app.
- Firebase
-Firebase | App success made simple
-Firebase gives you the tools and infrastructure you need to build better apps and grow successful businesses. 
+4. Navigate to command prompt (for Windows OS) or terminal (for Mac OS) and run the code below to start the server:
+>`nodemon server.js`
+
+5. Enter the URL in your web browser
+>`http://localhost:3030/`
+
+This app can also be viewed on this link.
+
