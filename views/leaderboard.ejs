@@ -6,6 +6,17 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+      .mdl-layout__content {
+        display: block;
+      }
+      .mdl-layout__content .page-content h2{
+        margin-left: 500px;
+      }
+      .mdl-data-table.mdl-js-data-table{
+        width: 50%;
+      }
+    </style>
   </head>
   <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -15,22 +26,36 @@
           <div class="mdl-layout-spacer"></div>
         </div>
       </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Leaderboard</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="/">Home</a>
+          <a class="mdl-navigation__link" href="/generaltech">General Technology Questions</a>
+          <a class="mdl-navigation__link" href="/leaaderbord">Leaderboards</a>
+        </nav>
+      </div>
     </div>
     <main class="mdl-layout__content">
       <div class="page-content">
         <h2>Leaderboard</h2>
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Score</th>
-          </tr>
-          <% users.forEach(function(user) {%>
-          <tr>
-            <td><%= user.name %></td>
-            <td><%= user.score %></td>
-          </tr>
-          <% }); %>
-        </table>
+        <center>
+          <table class="mdl-data-table mdl-js-data-table">
+            <thead>
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric">Name</th>
+                <th class="mdl-data-table__cell--non-numeric">Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% users.forEach(function(user) {%>
+              <tr>
+                <td class="mdl-data-table__cell--non-numeric"><%= user.name %></td>
+                <td class="mdl-data-table__cell--non-numeric"><%= user.score %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </center>
       </div>
     </main>
   </body>

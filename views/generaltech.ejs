@@ -13,8 +13,8 @@
         }
         .mdl-card.mdl-shadow--2dp {
           margin: 0 auto;
+          width: 60%;
         }
-
         button#submit.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect {
           margin-left: 620px;
           margin-top: 10px;
@@ -29,6 +29,14 @@
           <div class="mdl-layout-spacer"></div>
         </div>
       </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">General Tech Questions</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="/">Home</a>
+          <a class="mdl-navigation__link" href="/generaltech">General Tech Questions</a>
+          <a class="mdl-navigation__link" href="/leaderboard">Leaderboard</a>
+        </nav>
+      </div>
       <main class="mdl-layout__content">
         <div class="page-content">
           <form id="myForm">
@@ -39,24 +47,25 @@
               </div>
               <div class="mdl-card__supporting-text"><%= question.question %></div>
                 <ul class="demo-list-control mdl-list">
-                <% question.options.forEach(function(option, idx) { %>
+                  <% question.options.forEach(function(option, idx) { %>
                   <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                       <span class="mdl-list__item-secondary-action">
                         <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-<%= index %><%= idx %>">
-                          <input type="radio" id="list-option-<%= index %><%= idx %>" class="mdl-radio__button" name="question<%= index %>" value="<%= option %>" />
+                          <input type="radio" id="list-option-<%= index %><%= idx %>" class="mdl-radio__button" name="question<%= index %>" value="<%= option %>"/>
                           <%= option %>
                         </label>
                       </span>
                     </span>
                   </li>
                   <% }); %>
-                  <input type="hidden" id="answer<%= index %>" value="<%= question.answer %>">
+                  <input type="hidden" id="answer<%= index %>" value="<%= question.answer %>"/>
                 </ul>
               </div>
               <% }); %>
               <button id="submit" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Submit</button>
-            </form>
+            </div>
+          </form>
         </div>
       </main>
     </div>
@@ -123,11 +132,8 @@
               swal.showInputError("You need to enter something!");
               return false
             }
-            
             document.location.href = "/add/leaderboard/" + inputValue + "/" + correctAnswers;
-            // swal("Nice!", "You username is: " + inputValue, "success");
           });
-
         });
       });
     </script>
